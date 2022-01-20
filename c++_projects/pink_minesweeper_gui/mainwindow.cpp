@@ -142,11 +142,13 @@ void MainWindow::init_gameboard()
 void MainWindow::gameboard_button_is_clicked()
 {
     int button_index = 0;
-    for (std::map<QPushButton *, std::vector<int>>::iterator it = game_buttons_.begin();
+    for (std::map<QPushButton *,
+                  std::vector<int>>::iterator it = game_buttons_.begin();
          it != game_buttons_.end();
          ++it) {
         if (it->first == sender()) {
-            Square square = board_.getSquare((it->second).at(0), (it->second).at(1));
+            Square square = board_.getSquare((it->second).at(0),
+                                             (it->second).at(1));
 
             if (square.hasFlag()) {
                 if (set_flag_) {
@@ -191,7 +193,9 @@ void MainWindow::init_window_objects()
     //make start game button
     start_game_button_ = new QPushButton("Start Game", this);
     start_game_button_->setGeometry(230, 1, 100, 30);
-    start_game_button_->setStyleSheet("background-color : #d10038 ; color : white ; font : bold");
+    start_game_button_->setStyleSheet("background-color : #d10038 "
+                                      "; color : white "
+                                      "; font : bold");
     connect(start_game_button_,
             &QPushButton::clicked,
             this,
@@ -245,7 +249,8 @@ void MainWindow::show_gameboard()
     for (std::map<QPushButton *, std::vector<int>>::iterator it = game_buttons_.begin();
          it != game_buttons_.end();
          ++it) {
-        Square square = board_.getSquare((it->second).at(0), (it->second).at(1));
+        Square square = board_.getSquare((it->second).at(0),
+                                         (it->second).at(1));
         if (square.hasFlag()) {
             it->first->setIcon(QIcon("images/pink_flag.png"));
         } else if (!square.isOpen()) {
@@ -269,7 +274,9 @@ void MainWindow::show_gameboard()
                 it->first->setStyleSheet("color : #66001b");
             }
         }
-        ui->game_board_grid->addWidget(it->first, (it->second).at(0), (it->second).at(1));
+        ui->game_board_grid->addWidget(it->first,
+                                       (it->second).at(0),
+                                       (it->second).at(1));
     }
 
     ui->game_board_grid->setHorizontalSpacing(0);
@@ -285,7 +292,8 @@ void MainWindow::reset_game_push_button_is_clicked()
     //resetting the gameboards
     board_ = GameBoard();
 
-    for (std::map<QPushButton *, std::vector<int>>::iterator it = game_buttons_.begin();
+    for (std::map<QPushButton *,
+                  std::vector<int>>::iterator it = game_buttons_.begin();
          it != game_buttons_.end();
          ++it) {
         delete it->first;
@@ -326,7 +334,8 @@ void MainWindow::set_everything_enabled()
 
     game_timer_->stop();
 
-    for (std::map<QPushButton *, std::vector<int>>::iterator it = game_buttons_.begin();
+    for (std::map<QPushButton *,
+                  std::vector<int>>::iterator it = game_buttons_.begin();
          it != game_buttons_.end();
          ++it) {
         it->first->setEnabled(false);
