@@ -38,7 +38,9 @@ const int TimerIntervalMS = 1000;
 
 // Sets up the gui and changes the central widgets background to pink.
 // Initializes the widgets seen in the gui window
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent)
+                       : QMainWindow(parent),
+                         ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->centralwidget->setStyleSheet("background-color: pink");
@@ -246,7 +248,8 @@ void MainWindow::init_window_objects()
 // adjacent mines.
 void MainWindow::show_gameboard()
 {
-    for (std::map<QPushButton *, std::vector<int>>::iterator it = game_buttons_.begin();
+    for (std::map<QPushButton *,
+                  std::vector<int>>::iterator it = game_buttons_.begin();
          it != game_buttons_.end();
          ++it) {
         Square square = board_.getSquare((it->second).at(0),
